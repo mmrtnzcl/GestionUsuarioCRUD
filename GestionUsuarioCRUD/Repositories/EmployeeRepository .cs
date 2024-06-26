@@ -19,12 +19,20 @@ namespace GestionUsuarioCRUD.Repositories
 
         public async Task DeleteEmployee(int id)
         {
-            var empoloyee = await _context.Employees.FindAsync(id);
-            if(empoloyee != null)
+            var employee = await _context.Employees.FindAsync(id);
+            if(employee != null)
             {
-                _context.Employees.Remove(empoloyee);
+                _context.Employees.Remove(employee);
                 await _context.SaveChangesAsync();  
             }
+        }
+
+        public async Task<Employee> GetEmployeeById(int id)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if(employee != null)
+                return employee;
+            return null;
         }
     }
 }

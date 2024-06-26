@@ -7,5 +7,6 @@ namespace GestionUsuarioCRUD.Services
 
         Task AddEmployee(Employee employee);
         Task DeleteEmployee(int id);
+        Task<Employee> GetEmployeeById(int id);
     }
 }

@@ -30,9 +30,15 @@ namespace GestionUsuarioCRUD.Controllers
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            var employee = await _employeeService.GetEmployeeById(id);
+            if ((employee != null))
+            {
+                await _employeeService.DeleteEmployee(id);
+                return Ok("Empleado eliminado correctamente.");
+            }
 
-            await _employeeService.DeleteEmployee(id);
-            return Ok("Empleado eliminado correctamente.");
+            return NotFound($"El empleado con el {id} no existe");
+            
         }
     }
 }

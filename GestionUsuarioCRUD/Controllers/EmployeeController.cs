@@ -17,7 +17,6 @@ namespace GestionUsuarioCRUD.Controllers
             _employeeService = employeeService;
         }
 
-
         [HttpPost("add")]
         public async Task<IActionResult> Create(Employee employee)
         {
@@ -27,6 +26,13 @@ namespace GestionUsuarioCRUD.Controllers
                 return Ok("Empleado añadido correctamente.");
             }
             return BadRequest(ModelState);
+        }
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            await _employeeService.DeleteEmployee(id);
+            return Ok("Empleado eliminado correctamente.");
         }
     }
 }

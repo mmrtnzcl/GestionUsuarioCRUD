@@ -13,9 +13,10 @@ namespace GestionUsuarioCRUD.Models.Abstract
         [MaxLength(30)]
         public string Nombre { get; set; }
 
-        [Required]
+        
         [Column(TypeName = "decimal(5,2)")]
-        public decimal SalarioBase { get; set; }
+        [Required]
+        public decimal? SalarioBase { get; set; }
 
         public Persona(int id, string nombre)
         {

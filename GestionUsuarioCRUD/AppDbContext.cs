@@ -12,5 +12,17 @@ namespace GestionUsuarioCRUD
 
         public DbSet<Employee> Employees { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Employee>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Nombre).IsRequired().HasMaxLength(30);
+
+                entity.Property(e => e.TipoEmpleado).IsRequired().HasColumnType("int(2)");
+            });
         }
+
+    }
 }

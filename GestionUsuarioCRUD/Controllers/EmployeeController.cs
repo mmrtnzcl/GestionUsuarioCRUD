@@ -27,7 +27,7 @@ namespace GestionUsuarioCRUD.Controllers
                 await _employeeService.AddEmployee(employee);
                 return Ok("Empleado añadido correctamente.");
             }
-            return BadRequest(ModelState);
+            return BadRequest($"El modelo {ModelState} es incorrecto");
         }
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(int id)

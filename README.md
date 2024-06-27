@@ -21,22 +21,22 @@ Esta es una pequeña API que gestiona los empleados de una empresa. Permite real
   - **Método:** PUT
   - **Descripción:** Actualiza el último salario total de un empleado por su ID.
   
-  - **Obtener todos los empleados**
+- **Obtener todos los empleados**
   - **URL:** `/api/employee/all`
   - **Método:** GET
   - **Descripción:** Obtiene todos los empleados de la BBDD.
   
-  - **Obtener empleado por ID**
+- **Obtener empleado por ID**
   - **URL:** `/api/employee/{id}`
   - **Método:** GET
   - **Descripción:** Obtiene los datos del empleado por su ID.
   
-  - **Actualizar todos los campos de un empleado**
+- **Actualizar todos los campos de un empleado**
   - **URL:** `/api/employee/update/{id}`
   - **Método:** POST
   - **Descripción:** Actualiza los datos del empleado, teniendo en cuenta los campos requeridos.
   
-  - **Salario del empleado**
+- **Salario del empleado**
   - **URL:** `/api/employee/salary/{id}`
   - **Método:** GET
   - **Descripción:** Obtiene el salario de un empleado, seguún el tipo de empleado.

@@ -10,10 +10,6 @@ namespace GestionUsuarioCRUD.Models.Entities
         [Required]
         public TipoEmpleado TipoEmpleado { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(5,2)")]
-        public decimal SalarioBase { get; set; }
-
         [Column(TypeName = "decimal(5,2)")]
         public decimal Bonificacion { get; set; }
 
@@ -51,8 +47,6 @@ namespace GestionUsuarioCRUD.Models.Entities
                 && this.HorasTrabajadas.Equals(other.HorasTrabajadas)
                 && this.PrecioHora.Equals(other.PrecioHora)
                 && this.UltimoSalarioTotal.Equals(other.UltimoSalarioTotal);
-
-
         }
     }
 }

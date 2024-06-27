@@ -1,5 +1,6 @@
 ﻿using GestionUsuarioCRUD.Models.Interface;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GestionUsuarioCRUD.Models.Abstract
 {
@@ -11,6 +12,10 @@ namespace GestionUsuarioCRUD.Models.Abstract
         [Required]
         [MaxLength(30)]
         public string Nombre { get; set; }
+
+        [Required]
+        [Column(TypeName = "decimal(5,2)")]
+        public decimal SalarioBase { get; set; }
 
         public Persona(int id, string nombre)
         {
@@ -29,5 +34,6 @@ namespace GestionUsuarioCRUD.Models.Abstract
         }
 
         public abstract decimal GetSalario();
+        
     }
 }

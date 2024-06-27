@@ -1,5 +1,5 @@
 ﻿using GestionUsuarioCRUD.Models.Entities;
-using GestionUsuarioCRUD.Models.Models;
+using GestionUsuarioCRUD.Models.ModelsDTO;
 
 namespace GestionUsuarioCRUD.Repositories
 {

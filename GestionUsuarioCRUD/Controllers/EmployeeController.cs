@@ -1,5 +1,5 @@
 ﻿using GestionUsuarioCRUD.Models.Entities;
-using GestionUsuarioCRUD.Models.Models;
+using GestionUsuarioCRUD.Models.ModelsDTO;
 using GestionUsuarioCRUD.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

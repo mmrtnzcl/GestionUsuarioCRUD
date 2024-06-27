@@ -1,4 +1,5 @@
 ﻿using GestionUsuarioCRUD.Models.Entities;
+using GestionUsuarioCRUD.Models.Models;
 
 namespace GestionUsuarioCRUD.Repositories
 {
@@ -10,5 +11,6 @@ namespace GestionUsuarioCRUD.Repositories
         Task<List<Employee>> GetAllEmployee();
         Task<Employee> UpdateEmployee(Employee existingEm, Employee newEmployee);
 
+        Task<EmployeeSalaryDTO> GetSalaryEmployeeById(int id);
     }
 }

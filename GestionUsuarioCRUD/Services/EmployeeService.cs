@@ -1,4 +1,5 @@
 ﻿using GestionUsuarioCRUD.Models.Entities;
+using GestionUsuarioCRUD.Models.Models;
 using GestionUsuarioCRUD.Repositories;
 
 namespace GestionUsuarioCRUD.Services
@@ -29,6 +30,12 @@ namespace GestionUsuarioCRUD.Services
         {
             return await _employeeRepository.GetEmployeeById(id);
         }
+
+        public async Task<EmployeeSalaryDTO> GetSalaryEmployeeById(int id)
+        {
+            return await _employeeRepository.GetSalaryEmployeeById(id);
+        }
+
         public async Task<Employee> UpdateEmployee(Employee existingEm, Employee newEmployee)
         {
             return await _employeeRepository.UpdateEmployee(existingEm, newEmployee);

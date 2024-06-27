@@ -1,4 +1,5 @@
 ﻿using GestionUsuarioCRUD.Models.Entities;
+using GestionUsuarioCRUD.Models.Models;
 using GestionUsuarioCRUD.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -73,6 +74,16 @@ namespace GestionUsuarioCRUD.Controllers
                 return Ok(updateemployee);
             }
             return BadRequest("El modelo no es correcto");
+        }
+
+        [HttpGet("salary/{id}")]
+        public async Task<IActionResult> GetSalaryEmployeeById(int id)
+        {
+            var existingEm = await _employeeService.GetEmployeeById(id);
+            if (existingEm == null)
+                return NotFound($"El empleado con el {id} no existe");
+            var employeeDTO = await _employeeService.GetSalaryEmployeeById(id);
+            return Ok(employeeDTO);
         }
     }
 }

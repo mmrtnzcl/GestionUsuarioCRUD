@@ -1,4 +1,5 @@
 ﻿using GestionUsuarioCRUD.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace GestionUsuarioCRUD.Repositories
 {
@@ -25,6 +26,13 @@ namespace GestionUsuarioCRUD.Repositories
                 _context.Employees.Remove(employee);
                 await _context.SaveChangesAsync();  
             }
+        }
+
+        public async Task<List<Employee>> GetAllEmployee()
+        {
+            var employeeList = new List<Employee>();
+            return employeeList = await _context.Employees.ToListAsync();
+
         }
 
         public async Task<Employee> GetEmployeeById(int id)

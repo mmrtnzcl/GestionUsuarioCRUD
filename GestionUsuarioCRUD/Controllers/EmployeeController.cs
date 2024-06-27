@@ -2,6 +2,7 @@
 using GestionUsuarioCRUD.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace GestionUsuarioCRUD.Controllers
 {
@@ -39,6 +40,13 @@ namespace GestionUsuarioCRUD.Controllers
 
             return NotFound($"El empleado con el {id} no existe");
             
+        }
+
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllEmployee()
+        {
+            var emmployeList = await _employeeService.GetAllEmployee();
+            return Ok(emmployeList);
         }
     }
 }

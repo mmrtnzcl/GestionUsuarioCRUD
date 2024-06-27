@@ -42,5 +42,18 @@ namespace GestionUsuarioCRUD.Repositories
                 return employee;
             return null;
         }
+        public async Task<Employee> UpdateEmployee(Employee existingEm, Employee newEmployee)
+        {
+            existingEm.Nombre = newEmployee.Nombre;
+            existingEm.TipoEmpleado = newEmployee.TipoEmpleado;
+            existingEm.SalarioBase = newEmployee.SalarioBase;
+            existingEm.PrecioHora = newEmployee.PrecioHora;
+            existingEm.Bonificacion = newEmployee.Bonificacion;
+            existingEm.HorasTrabajadas = newEmployee.HorasTrabajadas;
+            existingEm.UltimoSalarioTotal = newEmployee.UltimoSalarioTotal;
+            await _context.SaveChangesAsync();
+
+            return newEmployee;
+        }
     }
 }

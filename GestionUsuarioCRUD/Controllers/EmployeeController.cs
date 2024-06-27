@@ -39,7 +39,7 @@ namespace GestionUsuarioCRUD.Controllers
             }
 
             return NotFound($"El empleado con el {id} no existe");
-            
+
         }
 
         [HttpGet("all")]
@@ -53,9 +53,26 @@ namespace GestionUsuarioCRUD.Controllers
         public async Task<IActionResult> GetEmployeeById(int id)
         {
             var employee = await _employeeService.GetEmployeeById(id);
-            if ((employee != null))
+            if (employee != null)
                 return Ok(employee);
             return NotFound($"El empleado con el {id} no existe");
+        }
+
+        [HttpPost("update/{id}")]
+        public async Task<IActionResult> UpdateEmployee(int id, Employee newEmployee)
+        {
+            var existingEm = await _employeeService.GetEmployeeById(id);
+            if(existingEm == null)
+                return NotFound($"El empleado con el {id} no existe");
+            if (ModelState.IsValid)
+            {
+                if (existingEm.Equals(newEmployee))
+                    return BadRequest($"No se esta actualizando ningun campo del empleado con el {id}");
+            
+                var updateemployee = await _employeeService.UpdateEmployee(existingEm, newEmployee);
+                return Ok(updateemployee);
+            }
+            return BadRequest("El modelo no es correcto");
         }
     }
 }

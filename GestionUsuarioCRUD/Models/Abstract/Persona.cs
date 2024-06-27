@@ -10,7 +10,7 @@ namespace GestionUsuarioCRUD.Models.Abstract
         
         [Required]
         [MaxLength(30)]
-        public string Nombre { get; private set; }
+        public string Nombre { get; set; }
 
         public Persona(int id, string nombre)
         {

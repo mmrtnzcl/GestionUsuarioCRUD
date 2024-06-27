@@ -4,6 +4,6 @@
     {
         string GetName();
         int GetId();
-        abstract decimal GetSalario();
+        decimal GetSalario();
     }
 }

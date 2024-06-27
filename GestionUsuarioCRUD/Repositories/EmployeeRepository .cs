@@ -1,5 +1,5 @@
 ﻿using GestionUsuarioCRUD.Models.Entities;
-using GestionUsuarioCRUD.Models.Models;
+using GestionUsuarioCRUD.Models.ModelsDTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace GestionUsuarioCRUD.Repositories
@@ -49,7 +49,7 @@ namespace GestionUsuarioCRUD.Repositories
             var employee = await _context.Employees.FindAsync(id);
             if (employee == null)
                 return null;
-            return new EmployeeSalaryDTO { Nombre = employee.Nombre, UltimoSalarioTotal = employee.GetSalario() };
+            return new EmployeeSalaryDTO { Nombre = employee.Nombre, SalarioEmpleado = employee.GetSalario() };
         }
 
         public async Task<Employee> UpdateEmployee(Employee existingEm, Employee newEmployee)

@@ -14,5 +14,20 @@ namespace GestionUsuarioCRUD.Services
         {
             await _employeeRepository.AddEmployee(employee);
         }
+
+        public async Task DeleteEmployee(int id)
+        {
+            await _employeeRepository.DeleteEmployee(id);
+        }
+
+        public Task<List<Employee>> GetAllEmployee()
+        {
+            return _employeeRepository.GetAllEmployee();
+        }
+
+        public async Task<Employee> GetEmployeeById(int id)
+        {
+            return await _employeeRepository.GetEmployeeById(id);
+        }
     }
 }

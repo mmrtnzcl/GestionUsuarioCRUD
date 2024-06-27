@@ -2,6 +2,7 @@
 using GestionUsuarioCRUD.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace GestionUsuarioCRUD.Controllers
 {
@@ -17,7 +18,6 @@ namespace GestionUsuarioCRUD.Controllers
             _employeeService = employeeService;
         }
 
-
         [HttpPost("add")]
         public async Task<IActionResult> Create(Employee employee)
         {
@@ -27,6 +27,26 @@ namespace GestionUsuarioCRUD.Controllers
                 return Ok("Empleado añadido correctamente.");
             }
             return BadRequest(ModelState);
+        }
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var employee = await _employeeService.GetEmployeeById(id);
+            if ((employee != null))
+            {
+                await _employeeService.DeleteEmployee(id);
+                return Ok("Empleado eliminado correctamente.");
+            }
+
+            return NotFound($"El empleado con el {id} no existe");
+            
+        }
+
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllEmployee()
+        {
+            var emmployeList = await _employeeService.GetAllEmployee();
+            return Ok(emmployeList);
         }
     }
 }

@@ -5,6 +5,9 @@ namespace GestionUsuarioCRUD.Repositories
     public interface IEmployeeRepository
     {
         Task AddEmployee(Employee employee);
+        Task DeleteEmployee(int id);
+        Task<Employee> GetEmployeeById(int id);
+        Task<List<Employee>> GetAllEmployee();
 
     }
 }

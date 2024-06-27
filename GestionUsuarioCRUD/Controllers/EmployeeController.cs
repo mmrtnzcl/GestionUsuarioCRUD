@@ -48,5 +48,14 @@ namespace GestionUsuarioCRUD.Controllers
             var emmployeList = await _employeeService.GetAllEmployee();
             return Ok(emmployeList);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEmployeeById(int id)
+        {
+            var employee = await _employeeService.GetEmployeeById(id);
+            if ((employee != null))
+                return Ok(employee);
+            return NotFound($"El empleado con el {id} no existe");
+        }
     }
 }

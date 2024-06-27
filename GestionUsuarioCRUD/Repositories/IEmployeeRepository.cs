@@ -10,7 +10,8 @@ namespace GestionUsuarioCRUD.Repositories
         Task<Employee> GetEmployeeById(int id);
         Task<List<Employee>> GetAllEmployee();
         Task<Employee> UpdateEmployee(Employee existingEm, Employee newEmployee);
-
         Task<EmployeeSalaryDTO> GetSalaryEmployeeById(int id);
+        Task UpdateLastSalary(Employee employe);
+
     }
 }

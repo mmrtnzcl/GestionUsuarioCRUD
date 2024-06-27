@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestionUsuarioCRUD.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240627120059_ChangeRestriction-PrecioHora")]
-    partial class ChangeRestrictionPrecioHora
+    [Migration("20240627211149_Initial-Migration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,11 +41,12 @@ namespace GestionUsuarioCRUD.Migrations
                     b.Property<decimal?>("PrecioHora")
                         .HasColumnType("decimal(4,2)");
 
-                    b.Property<decimal>("SalarioBase")
+                    b.Property<decimal?>("SalarioBase")
+                        .IsRequired()
                         .HasColumnType("decimal(5,2)");
 
                     b.Property<int>("TipoEmpleado")
-                        .HasColumnType("int");
+                        .HasColumnType("int(2)");
 
                     b.Property<decimal?>("UltimoSalarioTotal")
                         .HasColumnType("decimal(10,2)");

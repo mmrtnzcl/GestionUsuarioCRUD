@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GestionUsuarioCRUD.Migrations
 {
-    public partial class Initialmigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,14 +18,14 @@ namespace GestionUsuarioCRUD.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TipoEmpleado = table.Column<int>(type: "int", nullable: false),
-                    SalarioBase = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    TipoEmpleado = table.Column<int>(type: "int(2)", nullable: false),
                     Bonificacion = table.Column<decimal>(type: "decimal(5,2)", nullable: true),
                     HorasTrabajadas = table.Column<decimal>(type: "decimal(2,1)", nullable: true),
-                    PrecioHora = table.Column<decimal>(type: "decimal(3,2)", nullable: true),
+                    PrecioHora = table.Column<decimal>(type: "decimal(4,2)", nullable: true),
                     UltimoSalarioTotal = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
                     Nombre = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SalarioBase = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
                 constraints: table =>
                 {

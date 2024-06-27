@@ -27,7 +27,7 @@ namespace GestionUsuarioCRUD.Controllers
                 await _employeeService.AddEmployee(employee);
                 return Ok("Empleado añadido correctamente.");
             }
-            return BadRequest(ModelState);
+            return BadRequest($"El modelo {ModelState} es incorrecto");
         }
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
@@ -74,6 +74,19 @@ namespace GestionUsuarioCRUD.Controllers
                 return Ok(updateemployee);
             }
             return BadRequest("El modelo no es correcto");
+        }
+
+        [HttpPut("{id}/updateLastSalary")]
+        public async Task<IActionResult> UpdateLastSalary(int id, [FromBody] decimal newSalary)
+        {
+            var employee = await _employeeService.GetEmployeeById(id);
+            if (employee == null)
+                return NotFound($"El empleado con el {id} no existe");
+            var updated = await _employeeService.UpdateLastSalary(employee, newSalary);
+            if (!updated)
+                return BadRequest("No se ha podido actualizar el salario");
+            return Ok("Salario actualizado correctamente");
+
         }
 
         [HttpGet("salary/{id}")]

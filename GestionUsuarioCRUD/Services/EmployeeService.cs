@@ -40,5 +40,19 @@ namespace GestionUsuarioCRUD.Services
         {
             return await _employeeRepository.UpdateEmployee(existingEm, newEmployee);
         }
+
+        public async Task<bool> UpdateLastSalary(Employee employee, decimal newSalary)
+        {
+            try
+            {
+               employee.UltimoSalarioTotal = newSalary;
+               await _employeeRepository.UpdateLastSalary(employee);
+               return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

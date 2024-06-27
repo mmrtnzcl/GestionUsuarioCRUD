@@ -11,5 +11,6 @@ namespace GestionUsuarioCRUD.Services
         Task<List<Employee>> GetAllEmployee();
         Task<Employee> UpdateEmployee(Employee existingEm, Employee newEmployee);
         Task<EmployeeSalaryDTO> GetSalaryEmployeeById(int id);
+        Task<bool> UpdateLastSalary(Employee employee, decimal newSalary);
     }
 }

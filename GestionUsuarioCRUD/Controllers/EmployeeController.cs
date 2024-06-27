@@ -76,6 +76,19 @@ namespace GestionUsuarioCRUD.Controllers
             return BadRequest("El modelo no es correcto");
         }
 
+        [HttpPut("{id}/updateLastSalary")]
+        public async Task<IActionResult> UpdateLastSalary(int id, [FromBody] decimal newSalary)
+        {
+            var employee = await _employeeService.GetEmployeeById(id);
+            if (employee == null)
+                return NotFound($"El empleado con el {id} no existe");
+            var updated = await _employeeService.UpdateLastSalary(employee, newSalary);
+            if (!updated)
+                return BadRequest("No se ha podido actualizar el salario");
+            return Ok("Salario actualizado correctamente");
+
+        }
+
         [HttpGet("salary/{id}")]
         public async Task<IActionResult> GetSalaryEmployeeById(int id)
         {

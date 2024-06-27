@@ -57,13 +57,19 @@ namespace GestionUsuarioCRUD.Repositories
             existingEm.Nombre = newEmployee.Nombre;
             existingEm.TipoEmpleado = newEmployee.TipoEmpleado;
             existingEm.SalarioBase = newEmployee.SalarioBase;
-            existingEm.PrecioHora = newEmployee.PrecioHora;
-            existingEm.Bonificacion = newEmployee.Bonificacion;
-            existingEm.HorasTrabajadas = newEmployee.HorasTrabajadas;
+            existingEm.PrecioHora = newEmployee.PrecioHora.HasValue ? newEmployee.PrecioHora : existingEm.PrecioHora;
+            existingEm.Bonificacion = newEmployee.Bonificacion.HasValue ? newEmployee.Bonificacion : existingEm.Bonificacion;
+            existingEm.HorasTrabajadas = newEmployee.HorasTrabajadas.HasValue ? newEmployee.HorasTrabajadas : existingEm.HorasTrabajadas;
             existingEm.UltimoSalarioTotal = newEmployee.UltimoSalarioTotal;
             await _context.SaveChangesAsync();
 
             return newEmployee;
+        }
+
+        public async Task UpdateLastSalary(Employee employee)
+        {
+            _context.Employees.Update(employee);
+            await _context.SaveChangesAsync();
         }
     }
 }

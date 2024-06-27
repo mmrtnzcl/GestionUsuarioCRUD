@@ -1,4 +1,5 @@
 ﻿using GestionUsuarioCRUD.Models.Entities;
+using GestionUsuarioCRUD.Models.Models;
 using GestionUsuarioCRUD.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +40,7 @@ namespace GestionUsuarioCRUD.Controllers
             }
 
             return NotFound($"El empleado con el {id} no existe");
-            
+
         }
 
         [HttpGet("all")]
@@ -47,6 +48,42 @@ namespace GestionUsuarioCRUD.Controllers
         {
             var emmployeList = await _employeeService.GetAllEmployee();
             return Ok(emmployeList);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEmployeeById(int id)
+        {
+            var employee = await _employeeService.GetEmployeeById(id);
+            if (employee != null)
+                return Ok(employee);
+            return NotFound($"El empleado con el {id} no existe");
+        }
+
+        [HttpPost("update/{id}")]
+        public async Task<IActionResult> UpdateEmployee(int id, Employee newEmployee)
+        {
+            var existingEm = await _employeeService.GetEmployeeById(id);
+            if(existingEm == null)
+                return NotFound($"El empleado con el {id} no existe");
+            if (ModelState.IsValid)
+            {
+                if (existingEm.Equals(newEmployee))
+                    return BadRequest($"No se esta actualizando ningun campo del empleado con el {id}");
+            
+                var updateemployee = await _employeeService.UpdateEmployee(existingEm, newEmployee);
+                return Ok(updateemployee);
+            }
+            return BadRequest("El modelo no es correcto");
+        }
+
+        [HttpGet("salary/{id}")]
+        public async Task<IActionResult> GetSalaryEmployeeById(int id)
+        {
+            var existingEm = await _employeeService.GetEmployeeById(id);
+            if (existingEm == null)
+                return NotFound($"El empleado con el {id} no existe");
+            var employeeDTO = await _employeeService.GetSalaryEmployeeById(id);
+            return Ok(employeeDTO);
         }
     }
 }
